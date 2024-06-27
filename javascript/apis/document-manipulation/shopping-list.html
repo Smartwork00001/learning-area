@@ -31,7 +31,31 @@
     </ul>
 
     <script>
+      const ulRef = document.querySelector("ul")
+      const itemRef = document.getElementById("item")
+      const buttonRef = document.querySelector("button")
+      
+      buttonRef.addEventListener("click", buttonClick)
+      function buttonClick(){
+        const itemValue = itemRef.value 
+        itemRef.value = ""
+        const listItemRef = document.createElement("li")
+        const spanRef = document.createElement("span")
+        const buttonRef = document.createElement("button")
+        listItemRef.appendChild(spanRef)
+        listItemRef.appendChild(buttonRef)
+        spanRef.textContent = itemValue
+        buttonRef.textContent = "Delete"
+        ulRef.append(listItemRef)
+        itemRef.focus()
 
+        buttonRef.addEventListener("click", () => {removeListItem(listItemRef)})
+      }
+
+      function removeListItem(listItemRef){
+        listItemRef.parentNode.removeChild(listItemRef)
+        itemRef.focus()
+      }
     </script>
   </body>
 </html>
